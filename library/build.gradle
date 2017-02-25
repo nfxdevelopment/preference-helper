@@ -1,6 +1,12 @@
 apply plugin: 'com.android.library'
 
-version = "0.0.1"
+version = '0.0.1'
+
+ext {
+    PUBLISH_GROUP_ID = 'com.nfx.android'
+    PUBLISH_ARTIFACT_ID = 'preference-helper'
+    PUBLISH_VERSION = version
+}
 
 android {
     compileSdkVersion 25
@@ -31,32 +37,4 @@ dependencies {
     testCompile "org.robolectric:robolectric:3.1.2"
 }
 
-ext {
-
-    //For bintray and jcenter distribution
-    bintrayRepo = 'maven'
-    bintrayName = 'preference-helper'
-
-    publishedGroupId = 'com.nfx.android'
-    libraryName = 'PreferenceHelper'
-    artifact = 'preference-helper'
-
-    libraryDescription = 'Helper classes for android shared preferences'
-
-    siteUrl = 'https://github.com/nfxdevelopment/preference-helper'
-    gitUrl = 'https://github.com/nfxdevelopment/preference-helper.git'
-
-    libraryVersion = version
-
-    developerId = 'nicknamewinder'
-    developerName = 'Nicholas Winder'
-    developerEmail = 'nfxdevelopment@gmail.com'
-
-    licenseName = 'The Apache Software License, Version 2.0'  //Example for license
-    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-    allLicenses = ["Apache-2.0"]
-
-}
-//These two remote files contain Bintray configuration as described above.
-apply from: 'https://raw.githubusercontent.com/quangctkm9207/template-files/master/android/gradle/install.gradle'
-apply from: 'https://raw.githubusercontent.com/quangctkm9207/template-files/master/android/gradle/bintray.gradle'
+apply from: 'https://raw.githubusercontent.com/blundell/release-android-library/master/android-release-aar.gradle'
