@@ -1,1 +1,1 @@
-include ':app', ':preferenceHelperLib'
+include ':app', ':library'
