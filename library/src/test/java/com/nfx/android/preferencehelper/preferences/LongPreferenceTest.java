@@ -50,7 +50,7 @@ public class LongPreferenceTest {
     public void testIsSet() throws Exception {
         assertThat("Should return false due to preference no being set",
                 longPreference.isSet(), is(false));
-        longPreference.set(0);
+        longPreference.set((long) 0);
         assertThat("Should return true as preference has just been set",
                 longPreference.isSet(), is(true));
     }
@@ -65,7 +65,7 @@ public class LongPreferenceTest {
 
     @Test
     public void testDelete() throws Exception {
-        longPreference.set(0);
+        longPreference.set((long) 0);
         assertThat("Should return true as preference has just been set",
                 longPreference.isSet(), is(true));
         longPreference.delete();
