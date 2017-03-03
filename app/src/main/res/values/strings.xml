@@ -3,17 +3,18 @@
 
     <!-- Strings related to Settings -->
 
-    <!-- Example General settings -->
-    <string name="pref_header_general">General</string>
-
+    <string name="pref_social_recommendations_key">example_switch</string>
     <string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact
         based on your message history
     </string>
+    <bool name="pref_social_recommendations_default_value">false</bool>
 
+    <string name="pref_display_name_key">example_string</string>
     <string name="pref_title_display_name">Display name</string>
-    <string name="pref_default_display_name">John Smith</string>
+    <string name="pref_display_name_default_value">John Smith</string>
 
+    <string name="pref_add_friends_to_messages_key">example_list</string>
     <string name="pref_title_add_friends_to_messages">Add friends to messages</string>
     <string-array name="pref_example_list_titles">
         <item>Always</item>
@@ -25,6 +26,7 @@
         <item>0</item>
         <item>-1</item>
     </string-array>
+    <string name="pref_add_friends_to_messages_default_value">1</string>
 
     <!-- Example settings for Data & Sync -->
     <string name="pref_header_data_sync">Data &amp; sync</string>

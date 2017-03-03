@@ -1,38 +1,66 @@
 package com.nfx.android.preferencehelpersample;
 
-import android.app.Activity;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
-import android.app.Notification;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
+import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
-public class PreferenceExample extends Activity {
+import com.nfx.android.preferencehelper.preferences.AbstractPreference;
+import com.nfx.android.preferencehelper.preferences.BooleanPreference;
+import com.nfx.android.preferencehelper.preferences.StringPreference;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class PreferenceExample extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Display the fragment as the main content.
-        FragmentManager mFragmentManager = getFragmentManager();
-        FragmentTransaction mFragmentTransaction = mFragmentManager
-                .beginTransaction();
-        Prefs1Fragment mPrefsFragment = new Prefs1Fragment();
-        mFragmentTransaction.replace(android.R.id.content, mPrefsFragment);
-        mFragmentTransaction.commit();
+        setContentView(R.layout.main_layout);
+
+        getFragmentManager().beginTransaction().replace(R.id.preferences_fragment,
+                new PreferenceFragmentExample()).commit();
     }
 
-    /**
-     * This fragment shows the preferences for the first header.
-     */
-    public static class Prefs1Fragment extends PreferenceFragment {
+    public static class PreferenceFragmentExample extends PreferenceFragment
+            implements SharedPreferences.OnSharedPreferenceChangeListener {
+
+        List<AbstractPreference> myList = new ArrayList<>();
+
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
 
-            // Load the preferences from an XML resource
             addPreferencesFromResource(R.xml.pref_general);
+
+            myList.add(new BooleanPreference(getPreferenceManager().getSharedPreferences(),
+                    getString(R.string.pref_social_recommendations_key),
+                    getResources().getBoolean(R.bool.pref_social_recommendations_default_value)));
+            myList.add(new StringPreference(getPreferenceManager().getSharedPreferences(),
+                    getString(R.string.pref_display_name_key),
+                    getResources().getString(R.string.pref_display_name_default_value)));
+            myList.add(new StringPreference(getPreferenceManager().getSharedPreferences(),
+                    getString(R.string.pref_add_friends_to_messages_key),
+                    getResources().getString(R.string.pref_add_friends_to_messages_default_value)));
+
+            getPreferenceManager().getSharedPreferences().
+                    registerOnSharedPreferenceChangeListener(this);
+
+        }
+
+        @Override
+        public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+            for(AbstractPreference preference : myList) {
+                if(key.equals(preference.getKey())) {
+                    Toast.makeText(getActivity().getBaseContext(),
+                            "preference : " + preference.getKey() + "\n" +
+                                    "value : " + preference.get(),
+                            Toast.LENGTH_LONG).show();
+                }
+            }
         }
     }
 }
