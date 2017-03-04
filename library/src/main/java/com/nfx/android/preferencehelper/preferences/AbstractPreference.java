@@ -11,11 +11,11 @@ public abstract class AbstractPreference<T> {
     /**
      * The shared preference instance to store the boolean in
      */
-    protected final SharedPreferences preferences;
+    final SharedPreferences preferences;
     /**
      * The default value for the preference
      */
-    protected final T defaultValue;
+    final T defaultValue;
     /**
      * The key which the preference is stored under
      */

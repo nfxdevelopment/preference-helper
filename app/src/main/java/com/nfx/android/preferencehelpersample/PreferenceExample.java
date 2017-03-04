@@ -28,7 +28,7 @@ public class PreferenceExample extends AppCompatActivity {
     public static class PreferenceFragmentExample extends PreferenceFragment
             implements SharedPreferences.OnSharedPreferenceChangeListener {
 
-        List<AbstractPreference> myList = new ArrayList<>();
+        final List<AbstractPreference> myList = new ArrayList<>();
 
         @Override
         public void onCreate(Bundle savedInstanceState) {
