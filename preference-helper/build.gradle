@@ -1,11 +1,13 @@
 apply plugin: 'com.android.library'
 
-version = '0.0.2'
-
 ext {
-    PUBLISH_GROUP_ID = 'com.nfx.android'
-    PUBLISH_ARTIFACT_ID = 'preference-helper'
-    PUBLISH_VERSION = version
+    VERSION = '0.0.2'
+    DESCRIPTION = 'Preference helper was created to help simplify the usage of shared preferences'
+    GROUPID = 'com.nfx.android'
+    ARTIFACTID = 'preference-helper'
+    REPOID = 'android-libraries'
+    GITREPO = 'https://github.com/nfxdevelopment/preference-helper.git'
+    PROJECTURL = 'https://github.com/nfxdevelopment/preference-helper'
 }
 
 android {
@@ -37,4 +39,5 @@ dependencies {
     testCompile "org.robolectric:robolectric:3.1.2"
 }
 
-apply from: 'https://raw.githubusercontent.com/blundell/release-android-library/master/android-release-aar.gradle'
+apply from: 'install.gradle'
+apply from: 'bintray.gradle'
